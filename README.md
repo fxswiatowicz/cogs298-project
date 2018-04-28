@@ -10,9 +10,9 @@ Reinforcement learning is a field of machine learning focused on agent-environme
   <img src = figures/mdp.png>
   </p>
   
-*Fig.1: A simplified diagram of of the MDP. At each time step, the state of the environment is presented to the agent, who then makes a decision. The environment responds by returning a reward; a positive, negative, or neutral value based on the action taken. This information is given to the agent to make another decision with (Sutton and Barto, 2018).*
+*Fig.1: A simplified diagram of of the MDP. At each time step, the state of the environment is presented to the agent, who then makes a decision. The state of the environment changes and the agent is given a reward; a positive, negative, or neutral value based on the action taken. These observations are given to the agent to make another decision with (Sutton and Barto, 2018).*
 
-This description glosses over a key part of the MDP structure: how  states, actions, and rewards interact with eachother. To
+This description glosses over a key part of the MDP structure: how  states, actions, and rewards interact with eachother. As previously mentioned, the goal of RL is to maximize the return, the total reward earned. The state, action, and reward provide 
 
 
 
