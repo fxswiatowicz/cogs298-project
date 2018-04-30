@@ -1,8 +1,8 @@
 # COGS-298 Project: Understanding Reinforcement Learning Through OpenAI Gym and Pong
-## Background
+## Overview
 This project is an attempt at both gaining a better understanding of the concepts behind reinforcement learning (RL) and imparting such knowledge onto others, by taking a closer look at Andrej Karpathy's RL [tutorial](#sources). Karpathy's work provides an excellent example of implementing and explaining complex features of RL algorithms like policy gradients, a method of improving the policy, an arbitrary rule used to determine what the agent should do based on the current state of the environment [(Sutton and Barto, 2018)](#sources). His post however, doesn't detail much of the general information about RL needed to fully understand what is happening. Explicitly explaining the components of RL should make the process of developing algorithms easier by providing a basis of considerations that must be implemented. Teaching an agent to play Pong is a deceivingly challenging task that will be examined closer.
 
-## Reinforcement learning
+## Background
 
 ### Markov Decision Processes
 Reinforcement learning is a field of machine learning focused on agent-environment interaction. The objective of problems that utilize RL methods is to find a policy, or the actions of an agent, that yield the highest total reward over the lifespan of training. In the context of RL, the agent is the decision maker. It receives observations about the current state of the environment and takes an action based on that information. The agent then receives a reward based on the chosen action. This reward, along with a new state, is passed to the agent and another action is taken. The environment includes whatever the agent has no control over. This feedback loop is known as a Markov Decision Process (MDP) [(Sutton and Barto, 2018)](#sources). 
@@ -21,12 +21,22 @@ The reward is calculated as a function of the current state of the environment a
 
 
 The state, action, and reward provide 
-*Talk about what else is needed in a Markov Decision Process - state transition probability (we don't have), that is needed to find the policy of the 
+*Talk about what else is needed in a Markov Decision Process - state transition probability (we don't have), that is needed to find the optimal policy, not having that is a problem- forces us to solve the policy 'online' through trial and error
 
 ### MDP Problems
 When creating a MDP framework, there are additional considerations that must be made. It will help to describe some of issues that arise when applying the MDP approach, since some of the problems are not obvious.
 #### Discounted Reward
 When calculating the total return
+http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects section 4.3
+
+
+
+
+#### Exploration vs Exploitation
+...
+
+
+### Reinforcement learning
 
 
 This description glosses over a key part of the MDP structure: how  states, actions, and rewards interact with eachother. As previously mentioned, the goal of RL is to maximize the return, the total reward earned. 
@@ -40,7 +50,7 @@ How we get highest reward: optimize the policy -- PI
 How to we do that? Policy gradients
 Policy search refers to methods that directly learn the policy for solving a Markov Decision Process (MDP) and Policy gradients are a subset of this wide class of algorithms.
 
-Policy gradients -- no value function -- directly change policy
+Policy gradients -- no value function -- directly change policy -- create a policy 
 
 
 
@@ -55,3 +65,5 @@ Policy gradients -- no value function -- directly change policy
 [4] Open AI Gym
 
 [5] http://www.cs.ubc.ca/~murphyk/Bayes/pomdp.html
+
+[6] http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects
