@@ -3,6 +3,8 @@
 This project is an attempt at both gaining a better understanding of the concepts behind reinforcement learning (RL) and imparting such knowledge onto others, by taking a closer look at Andrej Karpathy's RL [tutorial](#sources). Karpathy's work provides an excellent example of implementing and explaining complex features of RL algorithms like policy gradients, a method of improving the policy, an arbitrary rule used to determine what the agent should do based on the current state of the environment [(Sutton and Barto, 2018)](#sources). His post however, doesn't detail much of the general information about RL needed to fully understand what is happening. Explicitly explaining the components of RL should make the process of developing algorithms easier by providing a basis of considerations that must be implemented. Teaching an agent to play Pong is a deceivingly challenging task that will be examined closer.
 
 ## Reinforcement learning
+
+### Markov Decision Processes
 Reinforcement learning is a field of machine learning focused on agent-environment interaction. The objective of problems that utilize RL methods is to find a policy, or the actions of an agent, that yield the highest total reward over the lifespan of training. In the context of RL, the agent is the decision maker. It receives observations about the current state of the environment and takes an action based on that information. The agent then receives a reward based on the chosen action. This reward, along with a new state, is passed to the agent and another action is taken. The environment includes whatever the agent has no control over. This feedback loop is known as a Markov Decision Process (MDP) [(Sutton and Barto, 2018)](#sources). 
 
 
@@ -12,9 +14,31 @@ Reinforcement learning is a field of machine learning focused on agent-environme
   
 *Fig.1: A simplified diagram of of the MDP. At each time step, the state of the environment is presented to the agent, who then makes a decision. The state of the environment changes and the agent is given a reward; a positive, negative, or neutral value based on the action taken. These observations are given to the agent to make another decision with (Sutton and Barto, 2018).*
 
-This description glosses over a key part of the MDP structure: how  states, actions, and rewards interact with eachother. As previously mentioned, the goal of RL is to maximize the return, the total reward earned. The state, action, and reward provide 
 
 
+
+The reward is calculated as a function of the current state of the environment and the action taken [(Alzantot, 2017)](#sources).  In the case of Pong, if the ball goes past the agent, the agent receives a reward of -1. If the agent hits the ball past the opponent, the reward given is +1. For all other state/action pairs, the environment returns a reward of 0 [(Karpathy, 2016)](#sources). In a normal 
+
+
+The state, action, and reward provide 
+
+### MDP Problems
+#### Discounted Reward
+When calculating the total return
+
+
+This description glosses over a key part of the MDP structure: how  states, actions, and rewards interact with eachother. As previously mentioned, the goal of RL is to maximize the return, the total reward earned. 
+#### Notes (to be deleted)
+must include a few things: discount factor (explain why), state transition probability, reward function -- how they interact with eachother?
+Reward function R(s,a) based on the state and the action taken, can either return -1,0,or 1
+Discount factor gamma - between 0 and 1 -- explain why we need to discount
+Probability of state transition
+
+How we get highest reward: optimize the policy -- PI
+How to we do that? Policy gradients
+Policy search refers to methods that directly learn the policy for solving a Markov Decision Process (MDP) and Policy gradients are a subset of this wide class of algorithms.
+
+Policy gradients -- no value function -- directly change policy
 
 
 
