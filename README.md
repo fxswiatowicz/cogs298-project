@@ -21,8 +21,10 @@ The reward is calculated as a function of the current state of the environment a
 
 
 The state, action, and reward provide 
+*Talk about what else is needed in a Markov Decision Process - state transition probability (we don't have), that is needed to find the policy of the 
 
 ### MDP Problems
+When creating a MDP framework, there are additional considerations that must be made. It will help to describe some of issues that arise when applying the MDP approach, since some of the problems are not obvious.
 #### Discounted Reward
 When calculating the total return
 
