@@ -16,12 +16,7 @@ Reinforcement learning is a field of machine learning focused on agent-environme
 
 
 
-
-The reward is calculated as a function of the current state of the environment and the action taken [(Alzantot, 2017)](#sources).  In the case of Pong, if the ball goes past the agent, the agent receives a reward of -1. If the agent hits the ball past the opponent, the reward given is +1. For all other state/action pairs, the environment returns a reward of 0 [(Karpathy, 2016)](#sources). In a MDP model not requiring reinforcement learning techniques, all of the information needed to calculate the policy of the agent is be available. Besides states, actions, and rewards (along with a [discount factor](#discounted-reward)), the MDP model requires a state transition probability, the likelihood of moving from one state to another given the action taken. With this information, the optimal policy can be calcuated directly through techniques like policy iteration. With policy iteration, the policy of each state is continually updated until the expected future reward for each state is maximized [(Kaelbling, 1996)](#sources). Unfortunately, this information is not always explictly given. In the case of Pong, there is no innate knowledge of how the game operates from one pixel frame to the next. Instead, the optimal policy can be calculated through trial and error, turning the model into one of RL rather than strictly MDP.
-
-
-The state, action, and reward provide 
-*Talk about what else is needed in a Markov Decision Process - state transition probability (we don't have), that is needed to find the optimal policy, not having that is a problem- forces us to solve the policy 'online' through trial and error
+The reward is calculated as a function of the current state of the environment and the action taken [(Alzantot, 2017)](#sources).  In the case of Pong, if the ball goes past the agent, the agent receives a reward of -1. If the agent hits the ball past the opponent, the reward given is +1. For all other state/action pairs, the environment returns a reward of 0 [(Karpathy, 2016)](#sources). In a complete MDP model, all of the information needed to calculate the policy of the agent is be available. Besides states, actions, and rewards (along with a [discount factor](#discounted-reward)), the MDP model requires a state transition probability, the likelihood of moving from one state to another given the action taken. With this information, the optimal policy can be calcuated directly through techniques like policy iteration. With policy iteration, the policy of each state is continually updated until the expected future reward for each state is maximized [(Kaelbling, 1996)](#sources). Unfortunately, this information is not always explictly given. In the case of Pong, there is no innate knowledge of how the game operates from one pixel frame to the next. **MAYBE ADD A LITTLE MORE INFO HERE** Instead, the optimal policy can be calculated through trial and error, turning the model into one of RL rather than strictly MDP.
 
 ### MDP Problems
 When creating a MDP framework, there are additional considerations that must be made. It will help to describe some of issues that arise when applying the MDP approach, since some of the problems are not obvious.
@@ -38,7 +33,7 @@ http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projec
 ...
 
 
-### Reinforcement learning
+### Reinforcement Learning
 #### Policy Gradients
 
 
