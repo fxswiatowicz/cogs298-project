@@ -17,7 +17,7 @@ Reinforcement learning is a field of machine learning focused on agent-environme
 
 
 
-The reward is calculated as a function of the current state of the environment and the action taken [(Alzantot, 2017)](#sources).  In the case of Pong, if the ball goes past the agent, the agent receives a reward of -1. If the agent hits the ball past the opponent, the reward given is +1. For all other state/action pairs, the environment returns a reward of 0 [(Karpathy, 2016)](#sources). In a normal 
+The reward is calculated as a function of the current state of the environment and the action taken [(Alzantot, 2017)](#sources).  In the case of Pong, if the ball goes past the agent, the agent receives a reward of -1. If the agent hits the ball past the opponent, the reward given is +1. For all other state/action pairs, the environment returns a reward of 0 [(Karpathy, 2016)](#sources). In a MDP model not requiring reinforcement learning techniques, all of the information needed to calculate the policy of the agent is be available. Besides states, actions, and rewards (along with a [discount factor](#discounted-reward), the MDP model requires a state transition probability the likelihood of moving from one state to another given the action taken. Since this information is not always explictly given (, we must    
 
 
 The state, action, and reward provide 
@@ -32,6 +32,8 @@ http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projec
 
 
 
+
+#### Choosing Goals
 #### Exploration vs Exploitation
 ...
 
