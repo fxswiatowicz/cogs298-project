@@ -16,12 +16,16 @@ Reinforcement learning is a field of machine learning focused on agent-environme
 
 
 
-The reward is calculated as a function of the current state of the environment and the action taken [(Alzantot, 2017)](#sources).  In the case of Pong, if the ball goes past the agent, the agent receives a reward of -1. If the agent hits the ball past the opponent, the reward given is +1. For all other state/action pairs, the environment returns a reward of 0 [(Karpathy, 2016)](#sources). In a complete MDP model, all of the information needed to calculate the policy of the agent is be available. Besides states, actions, and rewards (along with a [discount factor](#discounted-reward)), the MDP model requires a state transition probability, the likelihood of moving from one state to another given the action taken. With this information, the optimal policy can be calcuated directly through techniques like policy iteration. With policy iteration, the policy of each state is continually updated until the expected future reward for each state is maximized [(Kaelbling, 1996)](#sources). Unfortunately, this information is not always explictly given. In the case of Pong, there is no innate knowledge of how the game operates from one pixel frame to the next. **MAYBE ADD A LITTLE MORE INFO HERE** Instead, the optimal policy can be calculated through trial and error, turning the model into one of RL rather than strictly MDP.
+The reward is calculated as a function of the current state of the environment and the action taken [(Alzantot, 2017)](#sources).  In the case of Pong, if the ball goes past the agent, the agent receives a reward of -1. If the agent hits the ball past the opponent, the reward given is +1. For all other state/action pairs, the environment returns a reward of 0 [(Karpathy, 2016)](#sources). In a complete MDP model, all of the information needed to calculate the policy of the agent is be available. Besides states, actions, and rewards (along with a [discount factor](#discounted-reward)), the MDP model requires a state transition probability, the likelihood of moving from one state to another given the action taken. With this information, the optimal policy can be calcuated directly through techniques like policy iteration. With policy iteration, the policy of each state is continually updated until the expected future reward for each state is maximized [(Kaelbling, 1996)](#sources). Unfortunately, this information is not always explictly given. In the case of Pong, the agent is given no innate knowledge of how the game operates from one pixel frame to the next. It must learn such probabilities from playing the game. The optimal policy can be calculated through trial and error, turning the model into one of RL rather than strictly MDP.
 
 ### MDP Problems
 When creating a MDP framework, there are additional considerations that must be made. It will help to describe some of issues that arise when applying the MDP approach, since some of the problems are not obvious.
 #### Discounted Reward
-When calculating the total return
+As mentioned when discussing the structure of MDP problems, one of the parameters of the model is the discount factor, typically denoted as gamma (γ).  When calculating the total return, 
+
+<p align = center>
+  <img src = figures/return-formula.png>
+  </p>
 http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects section 4.3
 
 
@@ -41,12 +45,8 @@ http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projec
 
 ### Code
 
-This description glosses over a key part of the MDP structure: how  states, actions, and rewards interact with eachother. As previously mentioned, the goal of RL is to maximize the return, the total reward earned. 
 #### Notes (to be deleted)
-must include a few things: discount factor (explain why), state transition probability, reward function -- how they interact with eachother?
-Reward function R(s,a) based on the state and the action taken, can either return -1,0,or 1
-Discount factor gamma - between 0 and 1 -- explain why we need to discount
-Probability of state transition
+
 
 How we get highest reward: optimize the policy -- PI
 How to we do that? Policy gradients
