@@ -21,17 +21,18 @@ The reward is calculated as a function of the current state of the environment a
 ### MDP Challenges
 When creating a MDP framework, there are additional considerations that must be made. It will help to describe some of issues that arise when applying the MDP approach, since some of the problems are not obvious.
 #### Discounted Reward
-As mentioned when discussing the structure of MDP problems, one of the parameters of the model is the discount factor, typically denoted as gamma (γ). Gamma is a value between 0 and 1, exclusive. Having a discount factor close to 1
-- highlights uncertainty of environment
--
-Below is the mathematical representation of calculating the discounted return.
+As mentioned when discussing the structure of MDP problems, one of the parameters of the model is the discount factor, typically denoted as gamma (γ). Below is the mathematical formula for calculating the discounted return.
+
 
 <p align = center>
   <img src = figures/return-formula.png>
   </p>
-  *Fig.2: Discounted return formula.
-http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects section 4.3
+*Fig.2: Discounted return formula [Sutton and Barto, 2018](#sources). The return is the sum of the reward at each time step. 
 
+Gamma is a value between 0 and 1, exclusive. The discount factor serves several purposes. It allows the total return to converge at a finite value since the reward grows exponentially smaller over time [Silver, 2017](#sources).  Having a gamma value  close to 1
+
+highlights uncertainty of environment
+make sure future rewards are properly accounted for but not fully (calculated return at 
 
 `env.step()`
 
