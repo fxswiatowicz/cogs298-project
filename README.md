@@ -33,7 +33,10 @@ As mentioned when discussing the structure of MDP problems, one of the parameter
 Gamma is a value between 0 and 1, exclusive. The discount factor serves several purposes. It allows the total return to converge at a finite value since the reward grows exponentially smaller over time [(Silver, 2017)](#sources).  Having a gamma value close to 1 makes the agent more 'far-sighted', since the value of later rewards are important in maximizing the total reward earned. In such a case, the agent needs to consider how future states and actions will yield rewards, not just the current one. A gamma value near 0 de-emphasizes future rewards. Setting a low discount factor will help maximize the current reward but can lower the overall return since decisions aren't being made with the future in mind [(Sutton and Barto, 2018)](#sources). Besides the mathematical benefit, discount factors can also highlight the uncertainty of the environment. The agent should treat future rewards (state/action pairs returning a positive or negative value) with less importance when finding a policy since there is no guarantee of a future state. This will be expaned upon when describing policy gradients in more detail.
 
 #### Choosing Goals
-Another important piece of the MDP problem is deciding on 
+Another important piece of the MDP problem is deciding on what the 
+
+https://www.alexirpan.com/2018/02/14/rl-hard.html - BOAT PROBLEM + 1 FOR POWERUP, +1 FOR WINNING RACE, ANYTHING +1 IS GOOD, WON'T FINISH RACE
+CAN RACK UP POINTS IF AGENT WAS REWARDED FOR JUST HITTING THE BALL BACK TO THE OPPONENT
 #### Exploration vs. Exploitation
 ...
 
@@ -42,10 +45,13 @@ Another important piece of the MDP problem is deciding on
 #### Policy Gradients
 
 
-### OpenAI Gym
+## OpenAI Gym
 
-### Code
+## Code
 http://minpy.readthedocs.io/en/latest/tutorial/rl_policy_gradient_tutorial/rl_policy_gradient.html (explains code a bit)
+
+### Methodology
+#### Relationship to Research
 #### Notes (to be deleted)
 
 
@@ -70,5 +76,7 @@ Policy gradients -- no value function -- directly change policy -- create a poli
 [5] Open AI Gym
 
 [6] http://www.cs.ubc.ca/~murphyk/Bayes/pomdp.html
+
+[7] David Silver's lecture notes 2
 
 [7] http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects
