@@ -39,7 +39,7 @@ Another important piece of the MDP problem is deciding on what goals the agent m
   <img src = figures/pong-rally.gif>
   </p>
   
-*Fig.3: Example of human versing AI opponent in Pong with the goal of making contact with the ball. While not allowing the ball past one's paddle is an essential part of winning Pong, it doesn't directly result in victory. To score, the ball must be paddled back to the opponent at such an angle and velocity that doesn't allow the ball to be served back.*
+*Fig.3: Example of human versing AI opponent in Pong with the goal of making contact with the ball. While not allowing the ball past one's paddle is an essential part of winning Pong, it doesn't directly result in victory. To score, the ball must be paddled back to the opponent at such an angle and velocity that makes it difficult for the ball to be served back.*
 
 Rewarding behaviors not directly associated with completing the objective of the environment can lead to policies that maximize the total return but fail to accomplish the overall goal of the game. In Pong, if the agent were rewarded every time it hit the ball, regardless of whether or not the ball goes past the opponent AI, the agent could potentially maximize the total reward earned by rallying with the opponent, hitting the ball back and forth perpetually. The agent places priority on scoring as much as possible instead of winning the game [(Clark and Amodei, 2016)](#sources). A good way to avoid this situation is to only reward 'direct' goals, actions that explicitly produce a result leading to victory or failure. For the sake of most RL problems, it doesn't matter how the model calculates the optimal policy, just that it completes the task at hand [(Sutton and Barto, 2018)](#sources).
 
