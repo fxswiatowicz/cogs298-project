@@ -110,8 +110,8 @@ xs, hs, dlogps, drs = [], [], [], []
 running_reward = None
 reward_sum = 0
 episode_number = 0
-print("Number of states")
-print(env.observation_space.n)
+#print("Number of states")
+#print(env.observation_space.n)
 
 
 while True:
