@@ -58,6 +58,7 @@ OpenAI Gym provides an interface to access RL environments. Instead of having to
 
 
 ## Code
+With most of the prerequisite information regarding MDPs and RL algorithms explained, a real example of agent-environment can be considered. 
 http://minpy.readthedocs.io/en/latest/tutorial/rl_policy_gradient_tutorial/rl_policy_gradient.html (explains code a bit)
 
 ### Methodology
