@@ -52,12 +52,11 @@ OpenAI Gym provides an interface to access RL environments. Instead of having to
 
 - ```env_reset()```: When called, this method resets the environment. This is necessary for the *trial and error* nature of RL since the agent should be provided a clean slate to act in after each discrete time step. In the case of Pong, the game should be reset after a game is finished (either the agent or opponent scores 21 points).
 
-- ```env.step()```: This method performs an action in the environment. It is given a single parameter, the action the agent should take. This value is usually calculated from a probability distribution [(Karparthy, 2016)](#sources). When called, env_step() returns four values: the state of the environment, the reward earned from performing the action,  
+- ```env.step()```: This method performs an action in the environment. It is given a single parameter, the action the agent should take. This value is usually calculated from a probability distribution [(Karparthy, 2016)](#sources). When called, env_step() returns four values, three of which are critical for traversing through the RL algorithm: the state of the environment, the reward earned from performing the action, and whether another action should be performed (dependent on if the agent has won or lost).
+
+- ```env.render()```: When set to true, this function will display a visualization of the agent performing actions in the environment. This can be useful as it provides concrete evidence of the agent's learning rather than relying soley on numerical values returned by calling methods like env_step().
 
 
-reset
-        step
-        render
 ## Code
 http://minpy.readthedocs.io/en/latest/tutorial/rl_policy_gradient_tutorial/rl_policy_gradient.html (explains code a bit)
 
