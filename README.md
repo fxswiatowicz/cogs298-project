@@ -60,7 +60,40 @@ With most of the prerequisite information regarding MDPs and RL algorithms expla
 Reinforcement learning models lean on prior psychological research on how sensory inputs turn into actions in animals [(Mnih et al., 2015)](#sources). In the case of a RL model, the sensory information given to an agent is in the form of pixel values corresponding to an on-screen game state. With this data, the agent must, through trial and error, learn how choose actions that best maximize the total reward earned from intercting with the environment.
 
 ### Input Data
-In order to maximize the total reward, the agent must optimize the actions it takes in its environment (the policy). Following the MDP diagram, the agent must have access to the states and rewards given. 
+In order to maximize the total reward, the agent must optimize the actions it takes in its environment (the policy). Following the MDP diagram, the agent must have access to the states and rewards given. The states are provided as an input layer of pixel information. This info is propagated through the network and provides an output that is the probability of going up or down. A snippet of code below shows this in action.
+
+``` python
+#init model
+D = 80 * 80 #input dimensionality
+if resume:
+    model = pickle.load(open('save.p', 'rb'))
+else:
+    model = {}
+    #initializing rates pseudo-randomly (Xavier initialization)
+    #Xavier initialization: taking the hidden nodes into account
+    #when we intialize nodes (http://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization)
+    #W1: input D computed into some vector
+    #W2: dealing only with hidden weights
+    model['W1'] = np.random.randn(H,D) / np.sqrt(D)
+    model['W2'] = np.random.randn(H) / np.sqrt(H)
+#gradient buffer helps with backpropagation. Used to store gradients.
+grad_buffer = { k : np.zeros_like(v) for k,v in model.items() } 
+## rmsprop (gradient descent) memory used to update model
+rmsprop_cache = { k : np.zeros_like(v) for k,v in model.items() } 
+
+#activation function
+#sigmoid is used at end of backpropagation to return values as probabilities
+def sigmoid(x):
+    return 1.0 / (1.0 + np.exp(-x)) #squashing(converting vectors into probabilities)
+    
+#forward propgation:
+def policy_forward(x):
+    h = np.dot(model['W1'], x)
+    h[h < 0] = 0 #ReLU: take the max between 0 and h
+    logp = np.dot(model['W2'], h)
+    p = sigmoid(logp)
+    return p, h #return propability of taking action 2 and hidstate
+```
 
 ### Output Data
 
