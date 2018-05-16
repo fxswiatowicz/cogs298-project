@@ -54,12 +54,13 @@ OpenAI Gym provides an interface to access RL environments. Instead of having to
 
 
 ## Code
-With most of the prerequisite information regarding MDPs and RL algorithms explained, a real example of agent-environment interaction can be considered in the form of Pong. Specifcally, a closer look at Karpathy's RL code will be taken.
+With most of the prerequisite information regarding MDPs and RL algorithms explained, a real example of agent-environment interaction can be considered in the form of Pong. Specifcally, a closer look at Karpathy's RL code will be taken. The algorithm makes use of machine learning techniques to continually update the policy of the agent from episode to episode.
 
 ### Relationship to Research
-https://www.nature.com/articles/nature14236
+Reinforcement learning models lean on prior psychological research on how sensory inputs turn into actions in animals [(Mnih et al., 2015)](#sources). In the case of a RL model, the sensory information given to an agent is in the form of pixel values corresponding to an on-screen game state. With this data, the agent must, through trial and error, learn how choose actions that best maximize the total reward earned from intercting with the environment.
 
 ### Input Data
+In order to maximize the total reward, the agent must optimize the actions it takes in its environment (the policy). Following the MDP diagram, the agent must have access to the states and rewards given. 
 
 ### Output Data
 
@@ -98,3 +99,5 @@ Policy gradients -- no value function -- directly change policy -- create a poli
 [7] http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects
 
 Clark and Amodei, 2016 - https://blog.openai.com/faulty-reward-functions/
+
+Mnih et al., 2015 https://www.nature.com/articles/nature14236
