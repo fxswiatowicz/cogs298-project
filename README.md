@@ -135,7 +135,7 @@ def policy_backward(eph,epdlogp):
     #return both derivatives to update weights
     return {'W1':dw1, 'W2':dw2}
 ```
-In ```policy_backward()```
+In ```policy_backward()``` 
 
 The last thing left to do is to continually propagate forward and backward through the network, updating the gradient by calling ```policy_backward()```.
 ```python
@@ -159,31 +159,25 @@ The last thing left to do is to continually propagate forward and backward throu
     grad = policy_backward(eph, epdlogp)
 ```
 
-- fix references
-
 ### Note
 For further information on policy gradients, one cam refer to David Silver's RL course materials, available [here](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/pg.pdf).
-
 
 ## Sources
 [1] Karpathy, A. (2016, May 31). Deep Reinforcement Learning: Pong from Pixels. Retrieved from http://karpathy.github.io/2016/05/31/rl/
 
-[2] Sutton & Barto
+[2] Sutton, R. S., & Barto, A. (2018). Reinforcement Learning: An Introduction (2nd ed.). MIT Press.
 
 [3] https://medium.com/@m.alzantot/deep-reinforcement-learning-demysitifed-episode-2-policy-iteration-value-iteration-and-q-978f9e89ddaa
 
-[4] https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume4/kaelbling96a-html/node20.html
+[4] Alzantot, M. (2017, July 09). Deep Reinforcement Learning Demysitifed (Episode 2) - Policy Iteration, Value Iteration and... Retrieved from https://medium.com/@m.alzantot/deep-reinforcement-learning-demysitifed-episode-2-policy-iteration-value-iteration-and-q-978f9e89ddaa
 
-[5] Open AI Gym
+[5] Brockman, G., Cheung, V., Pettersson, L., Schneider, J., Schulman, J., Tang, J.,
+and Zaremba, W. OpenAI Gym. arXiv preprint arXiv:1606.01540 (2016).
 
-[6] http://www.cs.ubc.ca/~murphyk/Bayes/pomdp.html
+[6] Silver, D. (n.d.). Lecture 2: Markov Decision Processes. Retrieved from http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/MDP.pdf
 
-[7] David Silver's lecture notes week 2
+[7] Clark, J., & Amodei, D. (2017, March 20). Faulty Reward Functions in the Wild. Retrieved from https://blog.openai.com/faulty-reward-functions/
 
-[7] http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects
+[8] Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., . . . Hassabis, D. (2015, February 25). Human-level control through deep reinforcement learning. Retrieved from https://www.nature.com/articles/nature14236
 
-[8] Clark and Amodei, 2016 - https://blog.openai.com/faulty-reward-functions/
-
-[9] Mnih et al., 2015 https://www.nature.com/articles/nature14236
-
-[10] Glorot, X., Bordes, A., & Bengio, Y. (2011). Deep Sparse Rectifier Neural Networks. Proceedings of the 14th International Conference on Artificial Intelligence and Statistics, 15, 315-323.
+[9] Glorot, X., Bordes, A., & Bengio, Y. (2011). Deep Sparse Rectifier Neural Networks. Proceedings of the 14th International Conference on Artificial Intelligence and Statistics, 15, 315-323.
