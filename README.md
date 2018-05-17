@@ -139,23 +139,23 @@ In ```policy_backward()```
 
 The last thing left to do is to continually propagate forward and backward through the network, updating the gradient by calling ```policy_backward()```.
 ```python
-  if done: # an episode finished
+   if done:
     episode_number += 1
 
-    # stack together all inputs, hidden states, action gradients, and rewards for this episode
-    epx = np.vstack(xs)
-    eph = np.vstack(hs)
-    epdlogp = np.vstack(dlogps)
+   
+    epx = np.vstack(xs) 
+    eph = np.vstack(hs) 
+    epdlogp = np.vstack(dlogps) 
     epr = np.vstack(drs)
-    xs,hs,dlogps,drs = [],[],[],[] # reset array memory
+    xs,hs,dlogps,drs = [],[],[],[] 
 
-    # compute the discounted reward backwards through time
+    
     discounted_epr = discount_rewards(epr)
-    # standardize the rewards to be unit normal (helps control the gradient estimator variance)
     discounted_epr -= np.mean(discounted_epr)
     discounted_epr /= np.std(discounted_epr)
 
-    epdlogp *= discounted_epr # modulate the gradient with advantage (PG magic happens right here.)
+
+    epdlogp *= discounted_epr
     grad = policy_backward(eph, epdlogp)
 ```
 
