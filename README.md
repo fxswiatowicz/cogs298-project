@@ -85,6 +85,16 @@ rmsprop_cache = { k : np.zeros_like(v) for k,v in model.items() }
 #sigmoid is used at end of backpropagation to return values as probabilities
 def sigmoid(x):
     return 1.0 / (1.0 + np.exp(-x)) #squashing(converting vectors into probabilities)
+
+def discount_rewards(r):
+    discounted_r = np.zeros_like(r)
+    running_add = 0
+    for t in reversed(range(0, r.size)):
+        if r[t] != 0: running_add = 0
+        #increment sum
+        running_add = running_add * gamma + r[t]
+        discounted_r[t] = running_add
+    return discounted_r
     
 #forward propgation:
 def policy_forward(x):
@@ -106,23 +116,53 @@ In this snippet of code, the model is intialized. ```W1``` and ```W2``` make up 
   <img src = figures/sigmoid_function.png>
   </p>
 
-- how are they changed -- explain ReLu and sigmoid
-- explain output updating policies
+*Fig.4: The sigmoid function between -5 and 5.*
+
+Another thing occuring in this code sample is the calculating of the discounted reward. The reason for this is explained [earlier](#discounted-reward). After taking the dot product from ```W1```, a rectified linear unit (ReLU) function is used to protect weights from fading out because of the lack of a gradient [(Glorot, Bordes, and Bengio, 2011)](#sources). The next thing needed is to backpropagate the policy network to calculate the error gradient. The error value will allow the network to self-correct network weights until desired values (that correspond to maximized discounted reward) are found.
+
+```python
+#backpropagation: recursively compute error derivatives for both network layers (W1 and W2)
+#programatically the chain rule
+#epdlogp: modulate the _ with advantage
+def policy_backward(eph,epdlogp):
+    #eph is array of intermediate states
+    #derivative wrt W2
+    dw2 = np.dot(eph.T, epdlogp).ravel()
+    dh = np.outer(epdlogp, model['W2'])
+    dh[eph <= 0] = 0 #reLU
+    #derivative wrt W1
+    dw1 = np.dot(dh.T, epx)
+    #return both derivatives to update weights
+    return {'W1':dw1, 'W2':dw2}
+```
+In ```policy_backward()```
+
+The last thing left to do is to continually propagate forward and backward through the network, updating the gradient by calling ```policy_backward()```.
+```python
+  if done: # an episode finished
+    episode_number += 1
+
+    # stack together all inputs, hidden states, action gradients, and rewards for this episode
+    epx = np.vstack(xs)
+    eph = np.vstack(hs)
+    epdlogp = np.vstack(dlogps)
+    epr = np.vstack(drs)
+    xs,hs,dlogps,drs = [],[],[],[] # reset array memory
+
+    # compute the discounted reward backwards through time
+    discounted_epr = discount_rewards(epr)
+    # standardize the rewards to be unit normal (helps control the gradient estimator variance)
+    discounted_epr -= np.mean(discounted_epr)
+    discounted_epr /= np.std(discounted_epr)
+
+    epdlogp *= discounted_epr # modulate the gradient with advantage (PG magic happens right here.)
+    grad = policy_backward(eph, epdlogp)
+```
+
 - fix references
 
-
-
-
-#### Notes (to be deleted)
-
-
-How we get highest reward: optimize the policy -- PI
-How to we do that? Policy gradients
-Policy search refers to methods that directly learn the policy for solving a Markov Decision Process (MDP) and Policy gradients are a subset of this wide class of algorithms.
-
-Policy gradients -- no value function -- directly change policy -- create a policy 
-
-
+### Note
+For further information on policy gradients, one cam refer to David Silver's RL course materials, available [here](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/pg.pdf).
 
 
 ## Sources
@@ -142,6 +182,8 @@ Policy gradients -- no value function -- directly change policy -- create a poli
 
 [7] http://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1539&context=etd_projects
 
-Clark and Amodei, 2016 - https://blog.openai.com/faulty-reward-functions/
+[8] Clark and Amodei, 2016 - https://blog.openai.com/faulty-reward-functions/
 
-Mnih et al., 2015 https://www.nature.com/articles/nature14236
+[9] Mnih et al., 2015 https://www.nature.com/articles/nature14236
+
+[10] Glorot, X., Bordes, A., & Bengio, Y. (2011). Deep Sparse Rectifier Neural Networks. Proceedings of the 14th International Conference on Artificial Intelligence and Statistics, 15, 315-323.
