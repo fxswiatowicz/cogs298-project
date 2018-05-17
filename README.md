@@ -59,8 +59,8 @@ With most of the prerequisite information regarding MDPs and RL algorithms expla
 ### Relationship to Research
 Reinforcement learning models lean on prior psychological research on how sensory inputs turn into actions in animals [(Mnih et al., 2015)](#sources). In the case of a RL model, the sensory information given to an agent is in the form of pixel values corresponding to an on-screen game state. With this data, the agent must, through trial and error, learn how choose actions that best maximize the total reward earned from intercting with the environment.
 
-### Input Data
-In order to maximize the total reward, the agent must optimize the actions it takes in its environment (the policy). Following the MDP diagram, the agent must have access to the states and rewards given. The states are provided as an input layer of pixel information. This info is propagated through the network and provides an output that is the probability of going up or down. A snippet of code below shows this in action.
+### Model Design
+In order to maximize the total reward, the agent must optimize the actions it takes in its environment (the policy). Following the MDP diagram, the agent must have access to the states and rewards given. The states are provided as an input layer of pixel information. This info is propagated through the network and provides an output that is the probability of going up or down. The code below shows this in action.
 
 ``` python
 #init model
@@ -93,11 +93,18 @@ def policy_forward(x):
     logp = np.dot(model['W2'], h)
     p = sigmoid(logp)
     return p, h #return propability of taking action 2 and hidstate
+   
+   
+# forward the policy network and sample an action from the returned probability
+aprob, h = policy_forward(x)
+action = 2 if np.random.uniform() < aprob else 3 # roll the dice!
 ```
 
-### Output Data
+In this snippet of code, the model is intialized. ```W1``` and ```W2``` make up the policy network [(Karpathy, 2016)](#sources). The policy network is initialized with random values initially. During forward propagation, ```policy_forward()``` takes in x, a vector corresponding to the pixel values from one state of the game. The method returns, p, the probability of taking action 2, to move up. This probability is calculated using the sigmoid function. The sigmoid function 
 
-### Model Design
+- how are they changed -- explain ReLu and sigmoid
+- explain output updating policies
+- fix references
 
 
 
