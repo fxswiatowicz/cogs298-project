@@ -100,7 +100,11 @@ aprob, h = policy_forward(x)
 action = 2 if np.random.uniform() < aprob else 3 # roll the dice!
 ```
 
-In this snippet of code, the model is intialized. ```W1``` and ```W2``` make up the policy network [(Karpathy, 2016)](#sources). The policy network is initialized with random values initially. During forward propagation, ```policy_forward()``` takes in x, a vector corresponding to the pixel values from one state of the game. The method returns, p, the probability of taking action 2, to move up. This probability is calculated using the sigmoid function. The sigmoid function 
+In this snippet of code, the model is intialized. ```W1``` and ```W2``` make up the policy network [(Karpathy, 2016)](#sources). The policy network is initialized with random values initially. During forward propagation, ```policy_forward()``` takes in x, a vector corresponding to the pixel values from one state of the game. The method returns, p, the probability of taking action 2, to move up. This probability is calculated by running ```logp``` through the sigmoid function. The sigmoid function is a non-linear activation function that returns a value between -1 and 1. A figure of the function is shown below.
+
+<p align = center>
+  <img src = figures/sigmoid_function.png>
+  </p>
 
 - how are they changed -- explain ReLu and sigmoid
 - explain output updating policies
