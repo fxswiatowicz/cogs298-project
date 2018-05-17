@@ -57,7 +57,7 @@ OpenAI Gym provides an interface to access RL environments. Instead of having to
 With most of the prerequisite information regarding MDPs and RL algorithms explained, a real example of agent-environment interaction can be considered in the form of Pong. Specifcally, a closer look at Karpathy's RL code will be taken. The algorithm makes use of machine learning techniques to continually update the policy of the agent from episode to episode.
 
 ### Relationship to Research
-Reinforcement learning models lean on prior psychological research on how sensory inputs turn into actions in animals [(Mnih et al., 2015)](#sources). In the case of a RL model, the sensory information given to an agent is in the form of pixel values corresponding to an on-screen game state. With this data, the agent must, through trial and error, learn how choose actions that best maximize the total reward earned from intercting with the environment.
+Reinforcement learning models lean on prior psychological research on how sensory inputs turn into actions in animals [(Mnih et al., 2015)](#sources). In the case of a RL model, the sensory information given to an agent is in the form of pixel values corresponding to an on-screen game state. With this data, the agent must, through trial and error, learn how to choose actions that best maximize the total reward earned from intercting with the environment. Pong is the perfect environment for this due to well-defined states (pixel values from game), rewards (win/lose), and actions (move up/down).
 
 ### Model Design
 In order to maximize the total reward, the agent must optimize the actions it takes in its environment (the policy). Following the MDP diagram, the agent must have access to the states and rewards given. The states are provided as an input layer of pixel information. This info is propagated through the network and provides an output that is the probability of going up or down. The code below shows this in action.
@@ -102,7 +102,7 @@ def policy_forward(x):
     h[h < 0] = 0 #ReLU: take the max between 0 and h
     logp = np.dot(model['W2'], h)
     p = sigmoid(logp)
-    return p, h #return propability of taking action 2 and hidstate
+    return p, h #return probability of taking action 2 and hidstate
    
    
 # forward the policy network and sample an action from the returned probability
@@ -110,7 +110,7 @@ aprob, h = policy_forward(x)
 action = 2 if np.random.uniform() < aprob else 3 # roll the dice!
 ```
 
-In this snippet of code, the model is intialized. ```W1``` and ```W2``` make up the policy network [(Karpathy, 2016)](#sources). The policy network is initialized with random values initially. During forward propagation, ```policy_forward()``` takes in x, a vector corresponding to the pixel values from one state of the game. The method returns, p, the probability of taking action 2, to move up. This probability is calculated by running ```logp``` through the sigmoid function. The sigmoid function is a non-linear activation function that returns a value between -1 and 1. A figure of the function is shown below.
+In this snippet of code, the model is intialized. ```W1``` and ```W2``` make up the policy network [(Karpathy, 2016)](#sources). The policy network is initialized with random values initially. During forward propagation, ```policy_forward()``` takes in ```x```, a vector corresponding to the pixel values from one state of the game. The method returns, ```p```, the probability of taking action 2, to move up. This probability is calculated by running ```logp``` through the sigmoid function. The sigmoid function is a non-linear activation function that returns a value between -1 and 1. A figure of the function is shown below.
 
 <p align = center>
   <img src = figures/sigmoid_function.png>
@@ -135,7 +135,7 @@ def policy_backward(eph,epdlogp):
     #return both derivatives to update weights
     return {'W1':dw1, 'W2':dw2}
 ```
-In ```policy_backward()``` 
+In ```policy_backward()```, the derivative with respect to ```W1``` is the gradient. The gradient of the weights is the error value, which shows how much the input weights need to be changed to provide the desired output [(Karpathy, 2016)]. Through trial and error (i.e. calling ```policy_forward()``` and ```policy_backward()``` again and again), the calculated gradient incrementally changes the weights of the network until an optimal policy is found (the agent always knows when to move up). 
 
 The last thing left to do is to continually propagate forward and backward through the network, updating the gradient by calling ```policy_backward()```.
 ```python
@@ -161,6 +161,7 @@ The last thing left to do is to continually propagate forward and backward throu
 
 ### Note
 For further information on policy gradients, one cam refer to David Silver's RL course materials, available [here](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/pg.pdf).
+
 
 ## Sources
 [1] Karpathy, A. (2016, May 31). Deep Reinforcement Learning: Pong from Pixels. Retrieved from http://karpathy.github.io/2016/05/31/rl/
